@@ -1,0 +1,40 @@
+'' Show table name
+Select table_name
+from INFORMATION_SCHEMA.TABLES
+
+'' Show Column name (single quotation mark)
+select COLUMN_NAME
+from INFORMATION_SCHEMA.COLUMNS
+where [TABLE_NAME] = 'Orders'
+
+''Describe a table
+select *
+from INFORMATION_SCHEMA.COLUMNS
+where TABLE_NAME = 'CovidDeaths'
+
+''Select Limited row of data: top 10 or top 10 percent
+select top 10 *
+from INFORMATION_SCHEMA.COLUMNS
+where TABLE_NAME = 'CovidDeaths'
+
+''Select rows from 11 to 15
+
+select *
+from CovidData2022..CovidDeaths
+ORDER BY population desc
+OFFSET 10 ROWS 
+FETCH FIRST 5 ROWS ONLY
+
+''WHERE Clause
+
+where dna_tested = 1
+where state IN ('NC','NY')
+where created_at < '2015-10-15'
+where state is not null
+where year(created_at) = 2014
+where year(created_at) = 2014 and month(created_at) = 10
+where gender = 'female' and breed LIKE ('%terrier%')
+
+
+select COUNT(location) as total_Count, COUNT(distinct location) total_Dis
+from CovidData2022..CovidDeaths
